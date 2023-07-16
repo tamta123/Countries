@@ -1,15 +1,33 @@
 import "./App.css";
-import CountryInfo from "./components/CountryInfo";
-import CountriesData from "./data.json";
+import { Routes, Route } from "react-router-dom";
+import { Home, CountryCard } from "./views";
+import Header from "./components/Header";
+import { useState } from "react";
 
 function App() {
-  const Countries = CountriesData;
+  const [mode, setMode] = useState("light");
+  const [searchCountry, setSearchCountry] = useState("");
+
+  const toggleDarkMode = () => {
+    setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
+  };
 
   return (
     <>
-      {Countries.map((country, index) => (
-        <CountryInfo country={country} key={index} />
-      ))}
+      <Header mode={mode} toggleDarkMode={toggleDarkMode} />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              mode={mode}
+              toggleDarkMode={toggleDarkMode}
+              searchCountry={searchCountry}
+            />
+          }
+        />
+        <Route path="/country/:countryId" element={<CountryCard />} />
+      </Routes>
     </>
   );
 }
