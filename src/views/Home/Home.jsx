@@ -1,14 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Assuming you are using React Router for navigation
 import CountryInfo from "./CountryInfo";
-import CountriesData from "../../data.json";
 
-function Home({ mode }) {
-  const [searchTerm, setSearchTerm] = useState("");
-  const filteredCountries = CountriesData.filter((country) =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+function Home({ mode, filteredCountries, searchTerm, setSearchTerm }) {
   return (
     <div
       className={`flex flex-col items-center justify-center gap-10 ${
@@ -33,7 +27,6 @@ function Home({ mode }) {
           }`}
         >
           <Link to={`/country/${country.alpha3Code}`}>
-            {/* Assuming you have a dynamic route for CountryCard with "/country/:countryCode" */}
             <CountryInfo country={country} />
           </Link>
         </div>

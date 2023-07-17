@@ -1,9 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 const CountryInfo = ({ country }) => {
-  //   const [countries, setCountries] = useState([]);
-  //   useEffect(() => {}, []);
-
   return (
     <div>
       <div>
