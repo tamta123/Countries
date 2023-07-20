@@ -62,70 +62,70 @@ function CountryCard({ countries, mode }) {
           }`}
         >
           <h2
-            className={`font-bold font-nunito-sans text-[22px] leading-normal mb-[16px]`}
+            className={`font-bold font-nunito-sans text-[22px] lg:text-[32px] leading-normal mb-[16px]`}
           >
             {country.name}
           </h2>
           <div className="lg:flex lg:item-center lg:justify-between">
             <div className="mb-[32px]">
               <div className="flex items-center gap-1">
-                <div className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Native Name:
                 </div>
-                <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   {country.nativeName}
                 </div>
               </div>
               <div className="flex items-center  gap-1">
-                <div className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Population:
                 </div>
-                <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   {country.population.toLocaleString("en-US")}
                 </div>
               </div>
               <div className="flex items-center  gap-1">
-                <div className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Region:
                 </div>
-                <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                <div className="font-normal font-nunito-sans text-[14px]  lg:text-[16px] leading-9">
                   {country.region}
                 </div>
               </div>
               <div className="flex items-center  gap-1">
-                <div className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Sub Region:
                 </div>
-                <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   {country.subregion}
                 </div>
               </div>
               <div className="flex items-center  gap-1">
-                <div className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Capital:
                 </div>
-                <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   {country.capital}
                 </div>
               </div>
             </div>
             <div className="mb-[36px]">
               <div className="flex items-center  gap-1">
-                <div className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Top Level Domain:
                 </div>
-                <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   {country.topLevelDomain}
                 </div>
               </div>
               <div className="flex items-center gap-1">
-                <span className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Currencies:
                 </span>
                 {country.currencies ? (
                   country.currencies.map((currency) => (
                     <div
-                      className="font-normal font-nunito-sans text-[12px] leading-9"
+                      className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9"
                       key={country.alpha3Code}
                     >
                       {currency.name}
@@ -136,17 +136,17 @@ function CountryCard({ countries, mode }) {
                 )}
               </div>
               <div className="flex items-center gap-1">
-                <span className="font-semibold font-nunito-sans text-[14px] leading-9">
+                <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Languages:
                 </span>
                 {country.languages ? (
-                  <span className="font-normal font-nunito-sans text-[12px] leading-9">
+                  <span className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                     {country.languages
                       .map((language) => language.name)
                       .join(", ")}
                   </span>
                 ) : (
-                  <div className="font-normal font-nunito-sans text-[12px] leading-9">
+                  <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                     No language data available.
                   </div>
                 )}
@@ -157,7 +157,7 @@ function CountryCard({ countries, mode }) {
             <span className="font-semibold font-nunito-sans text-[16px] leading-[24px] xl:w-[30%]">
               Border Countries:
             </span>
-            <div className="flex items-center justify-center flex-wrap gap-3 font-normal font-nunito-sans text-[12px] leading-normal">
+            <div className="flex items-center justify-center flex-wrap gap-3 font-normal font-nunito-sans text-[12px] lg:text-[14px] leading-normal">
               {country.borders && country.borders.length > 0 ? (
                 country.borders.map((borderCountryCode) => {
                   const borderCountry = countries.find(
