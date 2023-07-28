@@ -12,13 +12,11 @@ function Home({
   setSelectedRegion,
   filterCountriesByRegion,
 }) {
-  // Implement a function to handle region filter changes
   const handleRegionChange = (selectedOption) => {
     setSelectedRegion(selectedOption.value);
   };
-  // Filter countries based on selected region using the prop function
   const countriesByRegion = filterCountriesByRegion(
-    filteredCountries, // Use the already filtered countries based on search term
+    filteredCountries,
     selectedRegion
   );
 
@@ -119,10 +117,7 @@ function Home({
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-8 gap-10 flex-col pr-[55px] pl-[56px] lg:px-20">
         {countriesByRegion.map((country) => (
-          <div
-            // className={`flex flex-col items-center justify-center`}
-            key={country.alpha3Code} // Assuming 'alpha3Code' is a unique identifier for the country
-          >
+          <div key={country.alpha3Code}>
             <Link to={`/country/${country.alpha3Code}`}>
               <CountryInfo country={country} mode={mode} />
             </Link>
