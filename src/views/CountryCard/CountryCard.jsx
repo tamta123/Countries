@@ -73,20 +73,19 @@ function CountryCard({ countries, mode }) {
         </div>
         Back
       </button>
-      <div className="mt-[64px] w-[85%] lg:flex xl:gap-[145px] xl:justify-between xl:items-center xl:mt-[20] lg:w-[95%]">
-        <div className="w-full h-[229px] xl:w-[50%] xl:h-[401px]">
-          <img
-            className="rounded-[5.718px]"
-            src={country.flag}
-            alt="flag"
-            style={{
-              width: "100%",
-              height: "100%",
-              objectFit: "cover",
-              boxShadow: "0px 0px 8px 2px rgba(0, 0, 0, 0.03)",
-            }}
-          />
-        </div>
+      <div className="mt-[64px] w-[85%] lg:flex xl:gap-[145px] xl:justify-between xl:items-center xl:mt-[20] lg:w-[95%] lg:gap-4">
+        <img
+          className="rounded-[5.718px]"
+          src={country.flag}
+          alt="flag"
+          style={{
+            width: "100%",
+            maxWidth: "700px",
+            height: "auto%",
+            objectFit: "cover",
+            boxShadow: "0px 0px 8px 2px rgba(0, 0, 0, 0.03)",
+          }}
+        />
         <div
           className={`pt-[47px] xl:p-0 lg:w-[40%] ${
             mode === "dark" ? "text-white" : "text-black"

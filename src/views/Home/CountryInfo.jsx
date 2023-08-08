@@ -10,7 +10,7 @@ const CountryInfo = ({ country, mode }) => {
         boxShadow: "0px 0px 7px 2px rgba(0, 0, 0, 0.03)",
       }}
     >
-      <div className="w-full h-[160px]">
+      <div className="w-full h-auto">
         <img
           className="w-full h-[160px]"
           src={country.flags.svg}

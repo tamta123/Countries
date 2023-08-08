@@ -115,7 +115,7 @@ function Home({
           />
         </div>
       </div>
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-8 gap-10 flex-col pr-[55px] pl-[56px] lg:px-20">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 gap-10 flex-col pr-[55px] pl-[56px] lg:px-20">
         {countriesByRegion.map((country) => (
           <div key={country.alpha3Code}>
             <Link to={`/country/${country.alpha3Code}`}>
@@ -129,3 +129,11 @@ function Home({
 }
 
 export default Home;
+
+// dark mode
+// vite+react Sevcvalo
+// css stilebi
+
+//defer
+//imperative da declaratie
+// browsershi typescript unda gaushva
