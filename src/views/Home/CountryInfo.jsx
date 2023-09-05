@@ -3,7 +3,7 @@ import React from "react";
 const CountryInfo = ({ country, mode }) => {
   return (
     <div
-      className={`w-full flex flex-col  justify-center m-auto rounded-[5px] ${
+      className={`w-full flex flex-col  justify-between m-auto rounded-[5px] h-[100%] ${
         mode === "dark" ? "bg-[#2B3844]" : "bg-[#FFFFFF]"
       }`}
       style={{
