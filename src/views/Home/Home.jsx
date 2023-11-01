@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import CountryInfo from "./CountryInfo";
 import Select from "react-select";
@@ -10,15 +10,32 @@ function Home({
   setSearchTerm,
   selectedRegion,
   setSelectedRegion,
-  filterCountriesByRegion,
 }) {
   const handleRegionChange = (selectedOption) => {
     setSelectedRegion(selectedOption.value);
   };
-  const countriesByRegion = filterCountriesByRegion(
-    filteredCountries,
-    selectedRegion
-  );
+
+  const regionMappings = {
+    Africa: ["Africa"],
+    Americas: [
+      "North America",
+      "South America",
+      "Central America",
+      "Caribbean",
+    ],
+    Asia: ["Asia", "Middle East"],
+    Europe: ["Europe"],
+    Oceania: ["Oceania"],
+  };
+
+  const countriesByRegion = filteredCountries.filter((country) => {
+    if (selectedRegion === "all") {
+      return true;
+    }
+
+    const countryRegion = country.continents[0];
+    return regionMappings[selectedRegion].includes(countryRegion);
+  });
 
   const regionOptions = [
     { value: "all", label: "All" },
@@ -35,12 +52,12 @@ function Home({
         mode === "dark" ? "bg-[#202C36]" : "bg-[#FAFAFA]"
       }`}
     >
-      <div className="flex flex-col gap-10 w-[74%] lg:w-full  items-start justify-start mt-6 lg:flex-row lg:justify-between lg:px-20">
+      <div className="flex flex-col gap-10 w-[74%] lg:w-full items-start justify-start mt-6 lg:flex-row lg:justify-between lg:px-20">
         <div
-          className={` flex items-center justify-start gap-6 pl-8 h-12  rounded-[5px] w-full lg:w-[35%] ${
+          className={`flex items-center justify-start gap-6 pl-8 h-12 rounded-[5px] w-full lg:w-[35%] ${
             mode === "dark"
-              ? "text-[white]  bg-[#2B3844]"
-              : "text-[#111517] bg-[#FFFFFF] "
+              ? "text-[white] bg-[#2B3844]"
+              : "text-[#111517] bg-[#FFFFFF]"
           }`}
           style={{
             boxShadow: "0px 2px 4px 0px rgba(0, 0, 0, 0.06)",
@@ -117,8 +134,8 @@ function Home({
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 2xl:grid-cols-6 gap-10 flex-col pr-[55px] pl-[56px] lg:px-20">
         {countriesByRegion.map((country) => (
-          <div key={country.alpha3Code}>
-            <Link to={`/country/${country.alpha3Code}`}>
+          <div key={country.cca3}>
+            <Link to={`/country/${country.cca3}`}>
               <CountryInfo country={country} mode={mode} />
             </Link>
           </div>
@@ -129,11 +146,3 @@ function Home({
 }
 
 export default Home;
-
-// dark mode
-// vite+react Sevcvalo
-// css stilebi
-
-//defer
-//imperative da declaratie
-// browsershi typescript unda gaushva

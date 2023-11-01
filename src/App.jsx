@@ -2,19 +2,40 @@ import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import { Home, CountryCard } from "./views";
 import Header from "./components/Header";
-import { useState } from "react";
-import CountriesData from "./data.json";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 function App() {
   const [mode, setMode] = useState("light");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedRegion, setSelectedRegion] = useState("all");
+  const [countries, setCountries] = useState([]);
 
-  const filteredCountries = CountriesData.filter((country) =>
-    country.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  useEffect(() => {
+    axios
+      .get("https://restcountries.com/v3.1/all")
+      .then((response) => {
+        setCountries(response.data);
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: " + error);
+      });
+  }, []);
 
-  const filterCountriesByRegion = (countries, region) => {
+  const filteredCountries = countries.filter((country) => {
+    if (typeof country.name.common === "string") {
+      console.log(country.name.common);
+      return country.name.common
+        .toLowerCase()
+        .includes(searchTerm.toLowerCase());
+    }
+    // Handle the case where country.name.common is not a string
+    return false;
+  });
+
+  const filterCountriesByRegion = (region) => {
+    // console.log(country.region);
     if (region === "all") {
       return countries;
     }
@@ -24,6 +45,8 @@ function App() {
   const toggleDarkMode = () => {
     setMode((prevMode) => (prevMode === "light" ? "dark" : "light"));
   };
+
+  // console.log(countries);
 
   return (
     <div
@@ -38,6 +61,7 @@ function App() {
           element={
             <Home
               mode={mode}
+              countries={countries}
               searchTerm={searchTerm}
               filteredCountries={filteredCountries}
               setSearchTerm={setSearchTerm}
@@ -48,8 +72,8 @@ function App() {
           }
         />
         <Route
-          path="/country/:countryCode" // Change the parameter name to countryCode
-          element={<CountryCard countries={CountriesData} mode={mode} />}
+          path="/country/:countryCode"
+          element={<CountryCard countries={countries} mode={mode} />}
         />
       </Routes>
     </div>

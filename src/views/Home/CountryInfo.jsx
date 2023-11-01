@@ -13,7 +13,7 @@ const CountryInfo = ({ country, mode }) => {
       <div className="w-full h-auto">
         <img
           className="w-full h-[160px]"
-          src={country.flags.svg}
+          src={country.flags.png}
           alt={`${country.name} flag`}
           style={{
             width: "100%",
@@ -30,7 +30,7 @@ const CountryInfo = ({ country, mode }) => {
         }`}
       >
         <h2 className=" font-nunito-sans pb-4 font-extrabold text-xl leading-[26px]">
-          {country.name}
+          {country.name.common}
         </h2>
         <div className="flex gap-1">
           <span className="font-nunito-sans font-semibold text-base leading-[16px]">

@@ -5,9 +5,7 @@ function CountryCard({ countries, mode }) {
   const { countryCode } = useParams();
   const navigate = useNavigate();
 
-  const country = countries.find(
-    (country) => country.alpha3Code === countryCode
-  );
+  const country = countries.find((country) => country.cca3 === countryCode);
 
   if (!country) {
     return <div>Country not Found</div>;
@@ -44,8 +42,8 @@ function CountryCard({ countries, mode }) {
               <g id="call-made">
                 <path
                   id="Shape"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
                   fill="white"
                 />
@@ -62,8 +60,8 @@ function CountryCard({ countries, mode }) {
               <g id="call-made">
                 <path
                   id="Shape"
-                  fill-rule="evenodd"
-                  clip-rule="evenodd"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
                   d="M5.81802 3.6967L6.87868 4.75736L3.3785 8.25754H16.7428L16.7428 9.74246H3.3785L6.87868 13.2426L5.81802 14.3033L0.514719 9L5.81802 3.6967Z"
                   fill="#111517"
                 />
@@ -76,7 +74,7 @@ function CountryCard({ countries, mode }) {
       <div className="mt-[64px] w-[85%] lg:flex xl:gap-[145px] xl:justify-between xl:items-center xl:mt-[20] lg:w-[95%] lg:gap-4">
         <img
           className="rounded-[5.718px]"
-          src={country.flag}
+          src={country.flags.png}
           alt="flag"
           style={{
             width: "100%",
@@ -94,7 +92,7 @@ function CountryCard({ countries, mode }) {
           <h2
             className={`font-bold font-nunito-sans text-[22px] lg:text-[32px] leading-normal mb-[16px]`}
           >
-            {country.name}
+            {country.name.common}
           </h2>
           <div className="lg:flex lg:item-center lg:justify-between">
             <div className="mb-[32px]">
@@ -152,11 +150,12 @@ function CountryCard({ countries, mode }) {
                 <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Currencies:
                 </span>
-                {country.currencies ? (
+                {Array.isArray(country.currencies) &&
+                country.currencies.length > 0 ? (
                   country.currencies.map((currency) => (
                     <div
                       className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9"
-                      key={country.alpha3Code}
+                      key={currency.code}
                     >
                       {currency.name}
                     </div>
@@ -169,7 +168,8 @@ function CountryCard({ countries, mode }) {
                 <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Languages:
                 </span>
-                {country.languages ? (
+                {Array.isArray(country.languages) &&
+                country.languages.length > 0 ? (
                   <span className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                     {country.languages
                       .map((language) => language.name)
@@ -191,8 +191,7 @@ function CountryCard({ countries, mode }) {
               {country.borders && country.borders.length > 0 ? (
                 country.borders.map((borderCountryCode) => {
                   const borderCountry = countries.find(
-                    (countryData) =>
-                      countryData.alpha3Code === borderCountryCode
+                    (country) => country.cca3 === borderCountryCode
                   );
 
                   return (
@@ -209,9 +208,7 @@ function CountryCard({ countries, mode }) {
                       key={borderCountryCode}
                     >
                       {borderCountry
-                        ? borderCountry.name.includes(" ")
-                          ? borderCountry.alpha3Code
-                          : borderCountry.name
+                        ? borderCountry.name.common
                         : "Country not found"}
                     </div>
                   );
