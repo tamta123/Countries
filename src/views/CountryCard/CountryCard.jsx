@@ -15,6 +15,8 @@ function CountryCard({ countries, mode }) {
     navigate("/");
   };
 
+  console.log(country.tld);
+
   return (
     <div
       className={`flex flex-col items-center justify-center lg:items-start lg:pl-20 ${
@@ -143,36 +145,35 @@ function CountryCard({ countries, mode }) {
                   Top Level Domain:
                 </div>
                 <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
-                  {country.topLevelDomain}
+                  {country.tld}
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Currencies:
                 </span>
-                {Array.isArray(country.currencies) &&
-                country.currencies.length > 0 ? (
-                  country.currencies.map((currency) => (
+                {country.currencies ? (
+                  Object.keys(country.currencies).map((currencyCode) => (
                     <div
                       className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9"
-                      key={currency.code}
+                      key={currencyCode}
                     >
-                      {currency.name}
+                      {country.currencies[currencyCode].name}
                     </div>
                   ))
                 ) : (
                   <div>No currency data available.</div>
                 )}
               </div>
+
               <div className="flex items-center gap-1">
                 <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Languages:
                 </span>
-                {Array.isArray(country.languages) &&
-                country.languages.length > 0 ? (
+                {country.languages ? (
                   <span className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
-                    {country.languages
-                      .map((language) => language.name)
+                    {Object.keys(country.languages)
+                      .map((languageCode) => country.languages[languageCode])
                       .join(", ")}
                   </span>
                 ) : (
