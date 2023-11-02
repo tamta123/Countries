@@ -16,6 +16,13 @@ function CountryCard({ countries, mode }) {
   };
 
   console.log(country.tld);
+  console.log(country.name.nativeName);
+  const names = country.name.nativeName;
+
+  const nameKeys = Object.keys(names);
+  console.log(names);
+  const nativeName = names[nameKeys[nameKeys.length - 1]];
+  console.log(nameKeys[nameKeys.length - 1]);
 
   return (
     <div
@@ -103,7 +110,7 @@ function CountryCard({ countries, mode }) {
                   Native Name:
                 </div>
                 <div className="font-normal font-nunito-sans text-[14px] lg:text-[16px] leading-9">
-                  {country.nativeName}
+                  {nativeName.common}
                 </div>
               </div>
               <div className="flex items-center  gap-1">
@@ -114,7 +121,7 @@ function CountryCard({ countries, mode }) {
                   {country.population.toLocaleString("en-US")}
                 </div>
               </div>
-              <div className="flex items-center  gap-1">
+              <div className="flex items-start  gap-1">
                 <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Region:
                 </div>
@@ -122,7 +129,7 @@ function CountryCard({ countries, mode }) {
                   {country.region}
                 </div>
               </div>
-              <div className="flex items-center  gap-1">
+              <div className="flex justify-start gap-[2px]">
                 <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Sub Region:
                 </div>
@@ -130,7 +137,7 @@ function CountryCard({ countries, mode }) {
                   {country.subregion}
                 </div>
               </div>
-              <div className="flex items-center  gap-1">
+              <div className="flex items-start  gap-1">
                 <div className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Capital:
                 </div>
@@ -148,7 +155,7 @@ function CountryCard({ countries, mode }) {
                   {country.tld}
                 </div>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-start gap-1">
                 <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Currencies:
                 </span>
@@ -166,7 +173,7 @@ function CountryCard({ countries, mode }) {
                 )}
               </div>
 
-              <div className="flex items-center gap-1">
+              <div className="flex flex-start gap-1">
                 <span className="font-semibold font-nunito-sans text-[14px] lg:text-[16px] leading-9">
                   Languages:
                 </span>
@@ -197,7 +204,7 @@ function CountryCard({ countries, mode }) {
 
                   return (
                     <div
-                      className={`h-[28px] w-[96px] flex items-center justify-center text-center rounded-[2px] ${
+                      className={`h-[28px] w-auto whitespace-nowrap text-left px-2 flex items-center justify-center rounded-[2px] ${
                         mode === "dark" ? "bg-[#2B3844]" : "bg-[#FFFFFF]"
                       }`}
                       style={{
@@ -226,3 +233,5 @@ function CountryCard({ countries, mode }) {
 }
 
 export default CountryCard;
+
+// ბორდერ ქანთრების სახელები სევამცინო
